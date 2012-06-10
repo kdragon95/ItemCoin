@@ -1,0 +1,29 @@
+Item: 371
+value_per_one: 5
+Drop_amount:
+   player: 2
+   blaze: 3
+   cave_spider: 2
+   chicken: 1
+   cow: 1
+   creeper: 3
+   ender_dragon: 30
+   enderman: 5
+   ghast: 5
+   giant: 7
+   iron_golem: 7
+   magma_cube: 5
+   mushroom_cow: 3
+   ocelot: 2
+   pig: 1
+   pig_zombie: 3
+   sheep: 1
+   silverfish: 2
+   skeleton: 3
+   slime: 3
+   snowman: 2
+   spider: 3
+   squid: 1
+   villager: 1
+   wolf: 3
+   zombie: 3

@@ -1,0 +1,4 @@
+﻿name: ItemCoin
+version: 1.0
+main: kr.co.minecraftforum.kdragon.itemcoin.ItemCoin
+author: kdragon
