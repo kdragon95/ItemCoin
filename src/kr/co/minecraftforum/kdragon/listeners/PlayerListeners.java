@@ -1,5 +1,6 @@
 package kr.co.minecraftforum.kdragon.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,13 +11,12 @@ import kr.co.minecraftforum.kdragon.itemcoin.ItemCoin;
 public class PlayerListeners implements Listener {
 	
 	private int configItem = ItemCoin.customConfig.getInt("Item");
-	private int configEarn = ItemCoin.customConfig.getInt("value_per_one");
+	private double configEarn = ItemCoin.customConfig.getDouble("value_per_one");
 	
 	@EventHandler
 	public void playerItemPickupEvent(PlayerPickupItemEvent e) {
 		
 		String player = e.getPlayer().getName();
-		boolean isOnline = e.getPlayer().isOnline();
 		int pickupItem = e.getItem().getItemStack().getTypeId();
 		double value = e.getItem().getItemStack().getAmount();
 		double total = configEarn * value;
@@ -24,8 +24,13 @@ public class PlayerListeners implements Listener {
 		if(configItem == pickupItem) {
 			e.setCancelled(true);
 			e.getItem().remove();
-			ItemCoin.boseconomy.addPlayerMoney(player, total, isOnline);
-			e.getPlayer().sendMessage(ChatColor.YELLOW + "" + total + ItemCoin.boseconomy.getMoneyNamePlural() + ChatColor.GRAY + "을(를) 획득하였습니다.");
+			if(ItemCoin.econ.hasAccount(player)) {
+				ItemCoin.econ.depositPlayer(player, total);
+				e.getPlayer().sendMessage(ChatColor.YELLOW + "" + total + " " + ItemCoin.econ.currencyNamePlural() + ChatColor.GRAY + "을(를) 획득하였습니다.");
+			}
+			if(!ItemCoin.econ.hasAccount(player)) {
+				e.getPlayer().sendMessage(ChatColor.RED + "[알림!] 계좌가 존재하지 않아 돈을 획득 할 수 없습니다. 서버 관리자에게 문의 해 주세요.");
+			}
 		}
 		
 	}

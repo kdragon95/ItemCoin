@@ -4,15 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import net.milkbowl.vault.economy.Economy;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import cosine.boseconomy.BOSEconomy;
 
 import kr.co.minecraftforum.kdragon.listeners.EntityDeathListeners;
 import kr.co.minecraftforum.kdragon.listeners.PlayerListeners;
@@ -21,7 +21,7 @@ public class ItemCoin extends JavaPlugin {
 	
 	Logger log = Bukkit.getLogger();
 	
-	public static BOSEconomy boseconomy = null;
+	public static Economy econ = null;
 	
 	public static File customConfigFile;
 	public static FileConfiguration customConfig;
@@ -31,7 +31,10 @@ public class ItemCoin extends JavaPlugin {
 		log.info(getName() + " enabled.");
 		configEnable();
 		registerEvents();
-		loadBOSEconomy();
+		if(!setupEconomy()) {
+			log.severe("Plugin 'Vault' does not exist! Plugin disabling...");
+			this.getServer().getPluginManager().disablePlugin(this);
+		}
 	}
 	
 	@Override
@@ -88,15 +91,16 @@ public class ItemCoin extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new EntityDeathListeners(), this);
 	}
 	
-	private void loadBOSEconomy() {
-		Plugin p = this.getServer().getPluginManager().getPlugin("BOSEconomy");
-		if(p!=null) {
-			boseconomy = (BOSEconomy) p;
+	private boolean setupEconomy() {
+		if(getServer().getPluginManager().getPlugin("Vault") == null) {
+			return false;
 		}
-		if(p==null) {
-			log.info("Could not find BOSEconomy. Disabling this plugin...");
-			this.getServer().getPluginManager().disablePlugin(this);
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+			return false;
 		}
+		econ = rsp.getProvider();
+		return econ != null;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,32 +18,34 @@ public class EntityDeathListeners implements Listener {
 	
 	private int configDrop = ItemCoin.customConfig.getInt("Item");
 	
-	private int configBlaze = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("blaze");
-	private int configCave_spider = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("cave_spider");
-	private int configChicken = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("chicken");
-	private int configCow = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("cow");
-	private int configCreeper = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("creeper");
-	private int configEnder_dragon = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("ender_dragon");
-	private int configEnderman = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("enderman");
-	private int configGhast = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("ghast");
-	private int configGiant = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("giant");
-	private int configIron_golem = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("iron_golem");
-	private int configMagma_cube = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("magma_cube");
-	private int configMushroom_cow = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("mushroom_cow");
-	private int configOcelot = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("ocelot");
-	private int configPig = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("pig");
-	private int configPig_zombie = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("pig_zombie");
-	private int configPlayer = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("player");
-	private int configSheep = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("sheep");
-	private int configSilverfish = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("silverfish");
-	private int configSkeleton = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("skeleton");
-	private int configSlime = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("slime");
-	private int configSnowman = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("snowman");
-	private int configSpider = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("spider");
-	private int configSquid = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("squid");
-	private int configVillager = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("villager");
-	private int configWolf = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("wolf");
-	private int configZombie = ItemCoin.customConfig.getConfigurationSection("Drop_amount").getInt("zombie");
+	private ConfigurationSection cfc = ItemCoin.customConfig.getConfigurationSection("Drop_amount");
+	
+	private int configBlaze = cfc.getInt("blaze");
+	private int configCave_spider = cfc.getInt("cave_spider");
+	private int configChicken = cfc.getInt("chicken");
+	private int configCow = cfc.getInt("cow");
+	private int configCreeper = cfc.getInt("creeper");
+	private int configEnder_dragon = cfc.getInt("ender_dragon");
+	private int configEnderman = cfc.getInt("enderman");
+	private int configGhast = cfc.getInt("ghast");
+	private int configGiant = cfc.getInt("giant");
+	private int configIron_golem = cfc.getInt("iron_golem");
+	private int configMagma_cube = cfc.getInt("magma_cube");
+	private int configMushroom_cow = cfc.getInt("mushroom_cow");
+	private int configOcelot = cfc.getInt("ocelot");
+	private int configPig = cfc.getInt("pig");
+	private int configPig_zombie = cfc.getInt("pig_zombie");
+	private int configPlayer = cfc.getInt("player");
+	private int configSheep = cfc.getInt("sheep");
+	private int configSilverfish = cfc.getInt("silverfish");
+	private int configSkeleton = cfc.getInt("skeleton");
+	private int configSlime = cfc.getInt("slime");
+	private int configSnowman = cfc.getInt("snowman");
+	private int configSpider = cfc.getInt("spider");
+	private int configSquid = cfc.getInt("squid");
+	private int configVillager = cfc.getInt("villager");
+	private int configWolf = cfc.getInt("wolf");
+	private int configZombie = cfc.getInt("zombie");
 	
 	ItemStack itemCoin = null;
 	
