@@ -1,12 +1,11 @@
 package kr.co.minecraftforum.kdragon.listeners;
 
-import java.io.IOException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -16,134 +15,128 @@ import kr.co.minecraftforum.kdragon.itemcoin.ItemCoin;
 
 public class EntityDeathListeners implements Listener {
 	
-	private int configDrop = ItemCoin.customConfig.getInt("Item");
-	
-	private ConfigurationSection cfc = ItemCoin.customConfig.getConfigurationSection("Drop_amount");
-	
-	private int configBlaze = cfc.getInt("blaze");
-	private int configCave_spider = cfc.getInt("cave_spider");
-	private int configChicken = cfc.getInt("chicken");
-	private int configCow = cfc.getInt("cow");
-	private int configCreeper = cfc.getInt("creeper");
-	private int configEnder_dragon = cfc.getInt("ender_dragon");
-	private int configEnderman = cfc.getInt("enderman");
-	private int configGhast = cfc.getInt("ghast");
-	private int configGiant = cfc.getInt("giant");
-	private int configIron_golem = cfc.getInt("iron_golem");
-	private int configMagma_cube = cfc.getInt("magma_cube");
-	private int configMushroom_cow = cfc.getInt("mushroom_cow");
-	private int configOcelot = cfc.getInt("ocelot");
-	private int configPig = cfc.getInt("pig");
-	private int configPig_zombie = cfc.getInt("pig_zombie");
-	private int configPlayer = cfc.getInt("player");
-	private int configSheep = cfc.getInt("sheep");
-	private int configSilverfish = cfc.getInt("silverfish");
-	private int configSkeleton = cfc.getInt("skeleton");
-	private int configSlime = cfc.getInt("slime");
-	private int configSnowman = cfc.getInt("snowman");
-	private int configSpider = cfc.getInt("spider");
-	private int configSquid = cfc.getInt("squid");
-	private int configVillager = cfc.getInt("villager");
-	private int configWolf = cfc.getInt("wolf");
-	private int configZombie = cfc.getInt("zombie");
-	
-	ItemStack itemCoin = null;
+	private ItemStack itemCoin = null;
 	
 	@EventHandler
 	public void entityDeathListener(EntityDeathEvent e) {
 		
+		Player killer = e.getEntity().getKiller();
 		String world = e.getEntity().getWorld().getName();
 		Location loc = e.getEntity().getLocation();
 		EntityType etype = e.getEntityType();
 		EntityType gtype = null;
 		
 		if(etype == gtype.BLAZE) {
-			isAmount(configBlaze);
+			itemStack(ItemCoin.blaze[0], ItemCoin.blaze[1]);
 		}
 		if(etype == gtype.CAVE_SPIDER) {
-			isAmount(configCave_spider);
+			itemStack(ItemCoin.cave_spider[0], ItemCoin.cave_spider[1]);
 		}
 		if(etype == gtype.CHICKEN) {
-			isAmount(configChicken);
+			itemStack(ItemCoin.chicken[0], ItemCoin.chicken[1]);
 		}
 		if(etype == gtype.COW) {
-			isAmount(configCow);
+			itemStack(ItemCoin.cow[0], ItemCoin.cow[1]);
 		}
 		if(etype == gtype.CREEPER) {
-			isAmount(configCreeper);
+			itemStack(ItemCoin.creeper[0], ItemCoin.creeper[1]);
 		}
 		if(etype == gtype.ENDER_DRAGON) {
-			isAmount(configEnder_dragon);
+			itemStack(ItemCoin.ender_dragon[0], ItemCoin.ender_dragon[1]);
 		}
 		if(etype == gtype.ENDERMAN) {
-			isAmount(configEnderman);
+			itemStack(ItemCoin.enderman[0], ItemCoin.enderman[1]);
 		}
 		if(etype == gtype.GHAST) {
-			isAmount(configGhast);
+			itemStack(ItemCoin.ghast[0], ItemCoin.ghast[1]);
 		}
 		if(etype == gtype.GIANT) {
-			isAmount(configGiant);
+			itemStack(ItemCoin.giant[0], ItemCoin.giant[1]);
 		}
 		if(etype == gtype.IRON_GOLEM) {
-			isAmount(configIron_golem);
+			itemStack(ItemCoin.iron_golem[0], ItemCoin.iron_golem[1]);
 		}
 		if(etype == gtype.MAGMA_CUBE) {
-			isAmount(configMagma_cube);
+			itemStack(ItemCoin.magma_cube[0], ItemCoin.magma_cube[1]);
 		}
 		if(etype == gtype.MUSHROOM_COW) {
-			isAmount(configMushroom_cow);
+			itemStack(ItemCoin.mushroom_cow[0], ItemCoin.mushroom_cow[1]);
 		}
 		if(etype == gtype.OCELOT) {
-			isAmount(configOcelot);
+			itemStack(ItemCoin.ocelot[0], ItemCoin.ocelot[1]);
 		}
 		if(etype == gtype.PIG) {
-			isAmount(configPig);
+			itemStack(ItemCoin.pig[0], ItemCoin.pig[1]);
 		}
 		if(etype == gtype.PIG_ZOMBIE) {
-			isAmount(configPig_zombie);
+			itemStack(ItemCoin.pig_zombie[0], ItemCoin.pig_zombie[1]);
 		}
 		if(etype == gtype.PLAYER) {
-			isAmount(configPlayer);
+			itemStack(ItemCoin.player[0], ItemCoin.player[1]);
 		}
 		if(etype == gtype.SHEEP) {
-			isAmount(configSheep);
+			itemStack(ItemCoin.sheep[0], ItemCoin.sheep[1]);
 		}
 		if(etype == gtype.SILVERFISH) {
-			isAmount(configSilverfish);
+			itemStack(ItemCoin.silverfish[0], ItemCoin.silverfish[1]);
 		}
 		if(etype == gtype.SKELETON) {
-			isAmount(configSkeleton);
+			itemStack(ItemCoin.skeleton[0], ItemCoin.skeleton[1]);
 		}
 		if(etype == gtype.SLIME) {
-			isAmount(configSlime);
+			itemStack(ItemCoin.slime[0], ItemCoin.slime[1]);
 		}
 		if(etype == gtype.SNOWMAN) {
-			isAmount(configSnowman);
+			itemStack(ItemCoin.snowman[0], ItemCoin.snowman[1]);
 		}
 		if(etype == gtype.SPIDER) {
-			isAmount(configSpider);
+			itemStack(ItemCoin.spider[0], ItemCoin.spider[1]);
 		}
 		if(etype == gtype.SQUID) {
-			isAmount(configSquid);
+			itemStack(ItemCoin.squid[0], ItemCoin.squid[1]);
 		}
 		if(etype == gtype.VILLAGER) {
-			isAmount(configVillager);
+			itemStack(ItemCoin.villager[0], ItemCoin.villager[1]);
 		}
 		if(etype == gtype.WOLF) {
-			isAmount(configWolf);
+			itemStack(ItemCoin.wolf[0], ItemCoin.wolf[1]);
 		}
 		if(etype == gtype.ZOMBIE) {
-			isAmount(configZombie);
+			itemStack(ItemCoin.zombie[0], ItemCoin.zombie[1]);
 		}
 		
-		if(itemCoin.getAmount() != 0) {
-			Bukkit.getWorld(world).dropItemNaturally(loc, itemCoin);
+		//플레이어가 죽였을 때만 드랍 하도록 설정 되어 있으면
+		if(ItemCoin.ifKilledByPlayer) {
+			if(killer != null) {
+				if(itemCoin.getAmount() != 0) {
+					Bukkit.getWorld(world).dropItemNaturally(loc, itemCoin);
+				}
+				if(itemCoin.getAmount() == 0) {}
+			}
+			if(killer == null) {}
 		}
-		if(itemCoin.getAmount() == 0) {}
+		
+		//죽으면 무조건 드랍 하도록 설정되어 있으면
+		if(!ItemCoin.ifKilledByPlayer) {
+			if(itemCoin.getAmount() != 0) {
+				Bukkit.getWorld(world).dropItemNaturally(loc, itemCoin);
+			}
+			if(itemCoin.getAmount() == 0) {}
+		}
+		
 	}
 	
-	private void isAmount(int amount) {
-			itemCoin = new ItemStack(Material.getMaterial(configDrop), amount);
+	//coin과 amount를 넣으면 ItemStack(설정된 아이템, 개수) 를 생성하는 메서드
+	private void itemStack(int coin, int amount) {
+		if(coin == 1) {
+			itemCoin = new ItemStack(Material.getMaterial(ItemCoin.coin1), amount);
+		}
+		if(coin == 2) {
+			itemCoin = new ItemStack(Material.getMaterial(ItemCoin.coin2), amount);
+		}
+		if(coin == 3) {
+			itemCoin = new ItemStack(Material.getMaterial(ItemCoin.coin3), amount);
+		}
 	}
-		
+
 }
